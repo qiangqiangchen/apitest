@@ -11,6 +11,7 @@ def login(data):
     result = api.post(url=config.base_url + '/doLogin', data=data, allow_redirects=False)
     home=api.get(url=config.base_url + '/home',cookies=result.cookies)
     if u'在线作业平台首页' in home.text:
+        print(r'登录成功')
         return result.cookies
     else:
         print('login is fail')
