@@ -13,7 +13,17 @@ def now():
     print("test")
 
 
+x=123
 
+def func():
+    print(x)
+
+
+class f:
+    def func(self):
+        print(x)
 
 if __name__=='__main__':
-    now()
+    fc=f()
+    fc.func()
+    print(x)

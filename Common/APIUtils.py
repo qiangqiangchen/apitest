@@ -15,16 +15,24 @@ class APIUtils:
     #         result.encoding = "utf-8"
     #     else:
     #         print('method值错误！！！')
-    def get(self, url, data=None, headers=None, cookies=None, allow_redirects=True):
-        result = requests.get(url=url, data=data, headers=headers, cookies=cookies, allow_redirects=allow_redirects)
-        result.encoding = "utf-8"
-        return result
+    def get(self, url, data=None, headers=None, cookies=None, allow_redirects=True, timeout=300):
+        try:
+            result = requests.get(url=url, data=data, headers=headers, cookies=cookies, allow_redirects=allow_redirects,
+                                  timeout=timeout)
+            result.encoding = "utf-8"
+            return result
+        except requests.exceptions.Timeout:
+            print(url+'timeout')
 
-    def post(self, url, data=None,json=None, headers=None, cookies=None, allow_redirects=True):
-        result = requests.post(url=url, data=data,json=json, headers=headers, cookies=cookies, allow_redirects=allow_redirects)
-        result.encoding = "utf-8"
-        return result
 
+    def post(self, url, data=None, json=None, headers=None, cookies=None, allow_redirects=True, timeout=300):
+        try:
+            result = requests.post(url=url, data=data, json=json, headers=headers, cookies=cookies,
+                                   allow_redirects=allow_redirects, timeout=timeout)
+            result.encoding = "utf-8"
+            return result
+        except requests.exceptions.Timeout:
+            print(url+'timeout')
 
 if __name__ == '__main__':
     api = APIUtils()
