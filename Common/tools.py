@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import unittest
 
-from config import Tag
+from config.Tag import Tag
 from config.config import setting
 
 CASE_TAG_FLAG = "__case_tag__"
@@ -12,7 +12,10 @@ def skip_if(condition,reason):
         return unittest.skipIf(condition,'"{}" is skipped ,renson:{}'.format("{}.{}".format(func.__module__, func.__name__),reason))(func)
     return wrap
 
-
+def skip(reason):
+    def wrap(func):
+        return unittest.skip('"{}" is skipped ,renson:{}'.format("{}.{}".format(func.__module__, func.__name__),reason))(func)
+    return wrap
 
 def tag(*tag_type):
     def wrap(func):

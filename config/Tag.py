@@ -7,7 +7,7 @@ class NewTag:
     def __init__(self, desc=""):
         self.desc = desc
 
-
+@unique
 class Tag(Enum):
     SMOKE = NewTag('冒烟')
     ALL = NewTag('完整')
